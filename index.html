@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ASCEND SYSTEMS</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* GLOBAL */
 :root {
   --bg: #0a0a0a;
+  --gold: #bd9f67;
   --text: #ffffff;
-  --muted: #9a9a9a;
-  --border: #1f1f1f;
+  --muted: #a0a0a0;
 }
 
 * {
@@ -36,9 +37,10 @@ body {
   font-weight: 700;
   letter-spacing: 0.45em;
   font-size: 14px;
+  color: var(--text);
 }
 
-/* CENTER */
+/* CENTER CONTENT */
 .center {
   height: 100%;
   display: flex;
@@ -55,38 +57,89 @@ body {
   max-width: 900px;
 }
 
-.center h1 span {
-  opacity: 0.9;
-}
-
-.center p {
-  margin-top: 28px;
-  font-size: 18px;
+.center h2 {
+  margin-top: 24px;
+  font-size: 22px;
+  font-weight: 400;
   color: var(--muted);
+  letter-spacing: 0.04em;
 }
 
-/* CTA */
-.cta {
-  margin-top: 56px;
-  padding: 16px 36px;
-  font-size: 15px;
-  border-radius: 8px;
-  border: 1px solid var(--text);
-  background: transparent;
-  color: var(--text);
+/* BUTTON */
+/* From Uiverse.io by Randdose */
+.button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 64px;
+  padding: 0.6em 2.2em;
+  border: var(--gold) solid 0.15em;
+  border-radius: 0.25em;
+  color: var(--gold);
+  font-size: 1.3em;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  transition: border 300ms, color 300ms;
+  user-select: none;
 }
 
-.cta:hover {
-  background: var(--text);
+.button p {
+  z-index: 1;
+}
+
+.button:hover {
   color: #000;
+}
+
+.button:active {
+  border-color: #9f834f;
+}
+
+.button::after,
+.button::before {
+  content: "";
+  position: absolute;
+  width: 9em;
+  aspect-ratio: 1;
+  background: var(--gold);
+  opacity: 40%;
+  border-radius: 50%;
+  transition: transform 500ms, background 300ms;
+}
+
+.button::before {
+  left: 0;
+  transform: translateX(-8em);
+}
+
+.button::after {
+  right: 0;
+  transform: translateX(8em);
+}
+
+.button:hover::before {
+  transform: translateX(-1em);
+}
+
+.button:hover::after {
+  transform: translateX(1em);
+}
+
+.button:active::before,
+.button:active::after {
+  background: #9f834f;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .center h1 {
     font-size: 42px;
+  }
+
+  .center h2 {
+    font-size: 18px;
   }
 }
 </style>
@@ -97,12 +150,12 @@ body {
 <div class="logo">A C S E N D</div>
 
 <div class="center">
-  <h1>
-    ASCEND SYSTEMS<br/>
-    helps you reach your goals.
-  </h1>
+  <h1>ASCEND SYSTEMS helps you reach your goals</h1>
+  <h2>Consistency has consequences.</h2>
 
-  <button class="cta">Get Started</button>
+  <button class="button">
+    <p>Get Started</p>
+  </button>
 </div>
 
 </body>
