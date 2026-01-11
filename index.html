@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ASCEND</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --border: #1f1f1f;
+  --text: #ffffff;
+  --muted: #9a9a9a;
+  --gold: #c9a24d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  font-size: 16px;
+}
+
+.level {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.level span {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+nav a {
+  font-size: 13px;
+  text-decoration: none;
+  color: var(--muted);
+}
+
+nav a:hover {
+  color: var(--text);
+}
+
+/* LOCKED */
+.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.locked::after {
+  content: " 🔒";
+}
+
+/* CTA */
+.cta {
+  padding: 9px 18px;
+  border: 1px solid var(--text);
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.lang {
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* HERO */
+.hero {
+  max-width: 1200px;
+  margin: auto;
+  padding: 110px 64px 70px;
+}
+
+.hero h1 {
+  font-size: 56px;
+  font-weight: 600;
+  max-width: 850px;
+}
+
+.hero p {
+  margin-top: 22px;
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 600px;
+}
+
+/* CARDS */
+.cards {
+  margin-top: 90px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.card {
+  background: var(--card);
+  padding: 34px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.card h3 {
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.card p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* RULES */
+.rules {
+  max-width: 1200px;
+  margin: 120px auto;
+  padding: 0 64px;
+}
+
+.rules h2 {
+  font-size: 30px;
+  margin-bottom: 36px;
+}
+
+.rule-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.rule {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  header {
+    padding: 20px 24px;
+  }
+  .hero {
+    padding: 80px 24px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .rule-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="logo">A C S E N D</div>
+    <div class="level">Level <span id="level">1</span></div>
+  </div>
+
+  <nav>
+    <a class="locked">Dashboard</a>
+    <a class="locked">History</a>
+    <a href="#">Premium</a>
+    <span class="lang" onclick="toggleLang()">EN / SV</span>
+    <a class="cta" href="#">Get Started</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1 id="heroTitle">Consistency has consequences.</h1>
+  <p id="heroText">
+    You either ascend — or you lose score. Discipline is measured daily.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <h3 id="c1t">Streak</h3>
+      <p id="c1p">How many days you maintain discipline without failure.</p>
+    </div>
+    <div class="card">
+      <h3 id="c2t">Daily Goals</h3>
+      <p id="c2p">Clear objectives. Completed daily. No excuses.</p>
+    </div>
+    <div class="card">
+      <h3 id="c3t">Score</h3>
+      <p id="c3p">Your total discipline score. Miss a day — descend.</p>
+    </div>
+  </div>
+</section>
+
+<section class="rules">
+  <h2 id="rulesTitle">Core Rules</h2>
+  <div class="rule-grid">
+    <div class="rule" id="r1">Daily login → +score</div>
+    <div class="rule" id="r2">Completed goals → +score</div>
+    <div class="rule" id="r3">Missed day → −score</div>
+    <div class="rule" id="r4">Missed goal → −score</div>
+  </div>
+</section>
+
+<script>
+let lang = "en";
+
+function toggleLang() {
+  lang = lang === "en" ? "sv" : "en";
+
+  if (lang === "sv") {
+    heroTitle.innerText = "Konsekvens skapar utveckling.";
+    heroText.innerText = "Antingen klättrar du — eller tappar poäng. Disciplin mäts dagligen.";
+
+    c1t.innerText = "Streak";
+    c1p.innerText = "Antal dagar du håller disciplin utan avbrott.";
+
+    c2t.innerText = "Dagliga mål";
+    c2p.innerText = "Tydliga mål. Klaras varje dag. Inga ursäkter.";
+
+    c3t.innerText = "Score";
+    c3p.innerText = "Din totala disciplinpoäng. Missa en dag — sjunk.";
+
+    rulesTitle.innerText = "Grundregler";
+    r1.innerText = "Daglig inloggning → +score";
+    r2.innerText = "Klarade mål → +score";
+    r3.innerText = "Missad dag → −score";
+    r4.innerText = "Missat mål → −score";
+  } else {
+    location.reload();
+  }
+}
+</script>
+
+</body>
+</html>
