@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ASCEND SYSTEMS</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* GLOBAL */
+/* ======================
+   GLOBAL THEME
+====================== */
 :root {
   --bg: #0a0a0a;
   --gold: #bd9f67;
+  --gold-dark: #9f834f;
   --text: #ffffff;
   --muted: #a0a0a0;
 }
@@ -23,24 +26,27 @@
 }
 
 body {
+  height: 100vh;
   background: var(--bg);
   color: var(--text);
   font-family: 'Inter', sans-serif;
-  height: 100vh;
 }
 
-/* LOGO */
+/* ======================
+   LOGO
+====================== */
 .logo {
   position: absolute;
   top: 32px;
   left: 32px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.45em;
-  font-size: 14px;
-  color: var(--text);
 }
 
-/* CENTER CONTENT */
+/* ======================
+   CENTER CONTENT
+====================== */
 .center {
   height: 100%;
   display: flex;
@@ -58,22 +64,24 @@ body {
 }
 
 .center h2 {
-  margin-top: 24px;
+  margin-top: 28px;
   font-size: 22px;
   font-weight: 400;
   color: var(--muted);
   letter-spacing: 0.04em;
 }
 
-/* BUTTON */
-/* From Uiverse.io by Randdose */
+/* ======================
+   BUTTON
+   From Uiverse.io by Randdose
+====================== */
 .button {
   all: unset;
   display: flex;
   align-items: center;
   position: relative;
   margin-top: 64px;
-  padding: 0.6em 2.2em;
+  padding: 0.6em 2em;
   border: var(--gold) solid 0.15em;
   border-radius: 0.25em;
   color: var(--gold);
@@ -94,7 +102,7 @@ body {
 }
 
 .button:active {
-  border-color: #9f834f;
+  border-color: var(--gold-dark);
 }
 
 .button::after,
@@ -129,10 +137,12 @@ body {
 
 .button:active::before,
 .button:active::after {
-  background: #9f834f;
+  background: var(--gold-dark);
 }
 
-/* RESPONSIVE */
+/* ======================
+   RESPONSIVE
+====================== */
 @media (max-width: 768px) {
   .center h1 {
     font-size: 42px;
@@ -147,8 +157,10 @@ body {
 
 <body>
 
+<!-- LOGO -->
 <div class="logo">A C S E N D</div>
 
+<!-- CONTENT -->
 <div class="center">
   <h1>ASCEND SYSTEMS helps you reach your goals</h1>
   <h2>Consistency has consequences.</h2>
