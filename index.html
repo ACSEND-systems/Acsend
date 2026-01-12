@@ -8,9 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ======================
-   GLOBAL THEME
-====================== */
 :root {
   --bg: #0a0a0a;
   --gold: #bd9f67;
@@ -32,9 +29,6 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/* ======================
-   LOGO
-====================== */
 .logo {
   position: absolute;
   top: 32px;
@@ -44,9 +38,6 @@ body {
   letter-spacing: 0.45em;
 }
 
-/* ======================
-   CENTER CONTENT
-====================== */
 .center {
   height: 100%;
   display: flex;
@@ -71,10 +62,6 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* ======================
-   BUTTON
-   From Uiverse.io by Randdose
-====================== */
 .button {
   all: unset;
   display: flex;
@@ -90,7 +77,6 @@ body {
   cursor: pointer;
   overflow: hidden;
   transition: border 300ms, color 300ms;
-  user-select: none;
 }
 
 .button p {
@@ -101,12 +87,8 @@ body {
   color: #000;
 }
 
-.button:active {
-  border-color: var(--gold-dark);
-}
-
-.button::after,
-.button::before {
+.button::before,
+.button::after {
   content: "";
   position: absolute;
   width: 9em;
@@ -114,7 +96,7 @@ body {
   background: var(--gold);
   opacity: 40%;
   border-radius: 50%;
-  transition: transform 500ms, background 300ms;
+  transition: transform 500ms;
 }
 
 .button::before {
@@ -135,39 +117,24 @@ body {
   transform: translateX(1em);
 }
 
-.button:active::before,
-.button:active::after {
-  background: var(--gold-dark);
-}
-
-/* ======================
-   RESPONSIVE
-====================== */
 @media (max-width: 768px) {
-  .center h1 {
-    font-size: 42px;
-  }
-
-  .center h2 {
-    font-size: 18px;
-  }
+  .center h1 { font-size: 42px; }
+  .center h2 { font-size: 18px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGO -->
 <div class="logo">A C S E N D</div>
 
-<!-- CONTENT -->
 <div class="center">
   <h1>ASCEND SYSTEMS helps you reach your goals</h1>
   <h2>Consistency has consequences.</h2>
 
-  <button class="button">
+  <a href="get-started.html" class="button">
     <p>Get Started</p>
-  </button>
+  </a>
 </div>
 
 </body>
