@@ -3,75 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get Started – ASCEND SYSTEMS</title>
+<title>Get Started – ASCEND</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --bg: #0a0a0a;
-  --card: #121212;
+  --card: #141414;
   --gold: #bd9f67;
-  --gold-dark: #9f834f;
   --text: #ffffff;
-  --muted: #a0a0a0;
+  --muted: rgba(255,255,255,0.6);
 }
 
-/* RESET */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
 }
 
-/* PAGE TRANSITION */
 body {
   height: 100vh;
   background: var(--bg);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   color: var(--text);
-  animation: pageFade 0.9s ease forwards;
+  animation: fadeIn 0.8s ease;
 }
 
-@keyframes pageFade {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* FORM CARD */
+/* FORM */
 .form {
-  width: 100%;
-  max-width: 400px;
-  background: var(--card);
-  padding: 36px;
-  border-radius: 20px;
-  border: 1px solid rgba(189,159,103,0.25);
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+  gap: 12px;
+  max-width: 360px;
+  padding: 28px;
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid rgba(189,159,103,0.25);
 }
 
 /* TITLE */
 .title {
   font-size: 26px;
   font-weight: 600;
+  padding-left: 28px;
   color: var(--gold);
+  position: relative;
 }
 
+.title::before,
+.title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.title::after {
+  animation: pulse 1s infinite;
+}
+
+/* TEXT */
 .message {
   font-size: 14px;
   color: var(--muted);
-  margin-bottom: 10px;
 }
 
 /* INPUTS */
@@ -79,62 +83,52 @@ body {
   position: relative;
 }
 
-.form input {
+.form .input {
   width: 100%;
-  padding: 14px;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.15);
+  padding: 18px 10px 6px;
   border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: #1f1f1f;
   color: var(--text);
-  outline: none;
-  font-size: 14px;
 }
 
 .form span {
   position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--muted);
+  left: 10px;
+  top: 14px;
   font-size: 14px;
-  pointer-events: none;
-  transition: 0.3s ease;
-  background: var(--card);
-  padding: 0 6px;
+  color: var(--muted);
+  transition: .3s;
 }
 
-.form input:focus + span,
-.form input:valid + span {
-  top: -6px;
-  font-size: 12px;
+.form .input:focus + span,
+.form .input:valid + span {
+  top: 4px;
+  font-size: 11px;
   color: var(--gold);
 }
 
-/* SUBMIT BUTTON */
+/* BUTTON */
 .submit {
-  margin-top: 12px;
-  padding: 14px;
+  margin-top: 10px;
+  padding: 12px;
   border-radius: 10px;
   border: none;
-  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  background: var(--gold);
   color: #000;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .submit:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 30px rgba(189,159,103,0.35);
+  opacity: 0.85;
 }
 
-/* FOOTER LINK */
 .signin {
   text-align: center;
   font-size: 14px;
   color: var(--muted);
-  margin-top: 8px;
 }
 
 .signin a {
@@ -142,54 +136,38 @@ body {
   text-decoration: none;
 }
 
-.signin a:hover {
-  text-decoration: underline;
-}
-
-/* MOBILE */
-@media (max-width: 480px) {
-  .form {
-    padding: 28px;
-  }
+@keyframes pulse {
+  from { transform: scale(0.9); opacity: 1; }
+  to { transform: scale(1.8); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<form class="form">
-  <div class="title">Get Started</div>
-  <div class="message">Create your ASCEND SYSTEMS account</div>
+<form class="form" action="verify.html">
+  <div class="title">Create Account</div>
+  <div class="message">A 4-digit code will be sent to your email</div>
 
   <label>
-    <input type="text" required>
-    <span>First Name</span>
-  </label>
-
-  <label>
-    <input type="text" required>
-    <span>Last Name</span>
-  </label>
-
-  <label>
-    <input type="email" required>
+    <input class="input" type="email" required>
     <span>Email</span>
   </label>
 
   <label>
-    <input type="password" required>
+    <input class="input" type="password" required>
     <span>Password</span>
   </label>
 
   <label>
-    <input type="password" required>
+    <input class="input" type="password" required>
     <span>Confirm Password</span>
   </label>
 
-  <button class="submit">Continue</button>
+  <button class="submit">Sign Up</button>
 
   <div class="signin">
-    Changed your mind? <a href="index.html">Go back</a>
+    Already have an account? <a href="index.html">Go back</a>
   </div>
 </form>
 
