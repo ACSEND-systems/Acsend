@@ -16,10 +16,7 @@
   --muted: rgba(255,255,255,0.6);
 }
 
-* {
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
+* { box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
 body {
   height: 100vh;
@@ -68,20 +65,11 @@ body {
   background: var(--gold);
 }
 
-.title::after {
-  animation: pulse 1s infinite;
-}
+.title::after { animation: pulse 1s infinite; }
 
-/* TEXT */
-.message {
-  font-size: 14px;
-  color: var(--muted);
-}
+.message { font-size: 14px; color: var(--muted); }
 
-/* INPUTS */
-.form label {
-  position: relative;
-}
+.form label { position: relative; }
 
 .form .input {
   width: 100%;
@@ -108,7 +96,6 @@ body {
   color: var(--gold);
 }
 
-/* BUTTON */
 .submit {
   margin-top: 10px;
   padding: 12px;
@@ -121,9 +108,7 @@ body {
   cursor: pointer;
 }
 
-.submit:hover {
-  opacity: 0.85;
-}
+.submit:hover { opacity: 0.85; }
 
 .signin {
   text-align: center;
@@ -141,13 +126,32 @@ body {
   to { transform: scale(1.8); opacity: 0; }
 }
 </style>
-</head>
 
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+<script>
+// ====== Din Firebase-konfiguration ======
+const firebaseConfig = {
+  apiKey: "AIzaSyC8PseBScFCdb6F5kT2zA4SyjazK4x7_Sg",
+  authDomain: "acsend-d1bc2.firebaseapp.com",
+  projectId: "acsend-d1bc2",
+  storageBucket: "acsend-d1bc2.firebasestorage.app",
+  messagingSenderId: "161958362696",
+  appId: "1:161958362696:web:9e20e64c1ad77fa299a27d"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+</script>
+
+</head>
 <body>
 
-<form class="form" action="verify.html">
+<form class="form" id="signupForm">
   <div class="title">Create Account</div>
-  <div class="message">A 4-digit code will be sent to your email</div>
+  <div class="message">A verification email will be sent to your email</div>
 
   <label>
     <input class="input" type="email" required>
@@ -164,12 +168,45 @@ body {
     <span>Confirm Password</span>
   </label>
 
-  <button class="submit">Sign Up</button>
+  <button class="submit" type="submit">Sign Up</button>
 
   <div class="signin">
     Already have an account? <a href="index.html">Go back</a>
   </div>
 </form>
+
+<script>
+const form = document.getElementById('signupForm');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const email = form.querySelector('input[type="email"]').value;
+  const password = form.querySelectorAll('input[type="password"]')[0].value;
+  const confirmPassword = form.querySelectorAll('input[type="password"]')[1].value;
+
+  if(password !== confirmPassword){
+    alert("Passwords do not match!");
+    return;
+  }
+
+  // Skapa konto med Firebase
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      // Skicka verifieringsmail
+      user.sendEmailVerification()
+        .then(() => {
+          alert("Verification email sent! Check your inbox.");
+          // Skicka vidare till verify.html
+          window.location.href = "verify.html";
+        });
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+});
+</script>
 
 </body>
 </html>
