@@ -197,7 +197,6 @@ form.addEventListener('submit', (e) => {
       // Skicka verifieringsmail
       user.sendEmailVerification()
         .then(() => {
-          alert("Verification email sent! Check your inbox.");
           // Skicka vidare till verify.html
           window.location.href = "verify.html";
         });
